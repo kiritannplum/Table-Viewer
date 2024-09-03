@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Table Viewer</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Table Viewer</h1>
+        「|」(バーティカルバー)区切りのテーブルデータをプレビュー、変換します。
+        <textarea id="input" rows="8" placeholder="テキストをここに入力"></textarea>
+
+        <button type="button" class="button" id="display-button">表示↓</button>
+
+        <div id="result-container">
+            <div id="table-container">
+                <table id="preview"></table>
+            </div>
+
+            <div id="parsed-csv-container">
+                <h2>CSV変換</h2>
+
+                <h3>区切り文字指定</h3>
+                <span class="tooltip">
+                    対応正規表現一覧
+                    <div class="tooltip-element">
+                        <table>
+                            <tr>
+                                <td>\t</td>
+                                <td>タブ文字</td>
+                            </tr>
+                            <tr>
+                                <td>\r</td>
+                                <td>改行 CR(0x0D)</td>
+                            </tr>
+                            <tr>
+                                <td>\n</td>
+                                <td>改行 LF(0x0A)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </span>
+                <div id="input-container">
+                    <div>
+                        行区切り文字列
+                        <input type="text" id="row-delimiter" class="input-small" value="\r\n" />
+                    </div>
+                    <div>
+                        列区切り文字列
+                        <input type="text" id="column-delimiter" class="input-small" value="," />
+                    </div>
+                </div>
+
+                <h3>全体</h3>
+
+                <textarea readonly id="csv-all" rows="8" placeholder="ここにCSVを表示"> </textarea>
+
+                <h3>1行のみ</h3>
+                行番号
+                <input type="number" id="row-num" class="input-small" value="0" min="0" />
+                <textarea readonly id="csv-a-row" rows="8" placeholder="ここにCSVを表示">
+                </textarea>
+
+                <h3>1列のみ</h3>
+                列番号
+                <input type="number" id="column-num" class="input-small" value="0" min="0" />
+                <textarea readonly id="csv-a-column" rows="8" placeholder="ここにCSVを表示">
+                </textarea>
+            </div>
+        </div>
+    </body>
+    <script type="module" src="./js/main.js"></script>
+</html>
