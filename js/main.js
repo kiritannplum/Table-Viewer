@@ -27,10 +27,25 @@ columnNumInput.addEventListener('change', () => {
     saveCookies();
 });
 
+const csvAllCopyButton = document.getElementById('csv-all-copy-button');
+csvAllCopyButton.addEventListener('click', (e) => {
+    console.log('test');
+    csvCopy(e.target);
+});
+
+const csvARowCopyButton = document.getElementById('csv-a-row-copy-button');
+csvARowCopyButton.addEventListener('click', (e) => {
+    csvCopy(e.target);
+});
+
+const csvAColumnCopyButton = document.getElementById('csv-a-column-copy-button');
+csvAColumnCopyButton.addEventListener('click', (e) => {
+    csvCopy(e.target);
+});
+
 loadCookies();
 // テーブルデータ
 let tableData = [];
-document.getElementById('input').value = '1|2|3|4|5\nあ|い|う|え|お';
 
 displayTable();
 
@@ -195,4 +210,23 @@ function getCookieValue(key) {
         return cookieValue;
     }
     return '';
+}
+
+async function csvCopy(target) {
+    const gloup = target.id.replace('-copy-button', '');
+    const copyText = document.getElementById(gloup).value;
+    setTimeout(() => navigator.clipboard.writeText(copyText), 100);
+    document.getElementById(gloup + '-copy-result').textContent =
+        formatDate(new Date(), '[HH:mm:ss] ') + 'コピーしました';
+}
+
+function formatDate(date, format) {
+    format = format.replace(/yyyy/g, date.getFullYear());
+    format = format.replace(/MM/g, ('0' + (date.getMonth() + 1)).slice(-2));
+    format = format.replace(/dd/g, ('0' + date.getDate()).slice(-2));
+    format = format.replace(/HH/g, ('0' + date.getHours()).slice(-2));
+    format = format.replace(/mm/g, ('0' + date.getMinutes()).slice(-2));
+    format = format.replace(/ss/g, ('0' + date.getSeconds()).slice(-2));
+    format = format.replace(/SSS/g, ('00' + date.getMilliseconds()).slice(-3));
+    return format;
 }
