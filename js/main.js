@@ -4,7 +4,7 @@ displayButton.addEventListener('click', displayTable, false);
 const rowDelimiterInput = document.getElementById('row-delimiter');
 rowDelimiterInput.addEventListener('change', () => {
     updateParsedAllCsv();
-    updateParsedARowCsv();
+    updateParsedAColumnCsv();
     saveCookies();
 });
 
@@ -17,7 +17,7 @@ rowNumInput.addEventListener('change', () => {
 const columnDelimiterInput = document.getElementById('column-delimiter');
 columnDelimiterInput.addEventListener('change', () => {
     updateParsedAllCsv();
-    updateParsedAColumnCsv();
+    updateParsedARowCsv();
     saveCookies();
 });
 
